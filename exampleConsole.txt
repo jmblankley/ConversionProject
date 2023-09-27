@@ -1,0 +1,10 @@
+Please enter conversion command, followed by the value you wish to convert.
+Commands:
+db - decimal(base 10) to binary
+bd - binary to decimal(base10)
+hb - hexidecimal(base16) to binary
+bh - binary to hexidecimal(base16)
+q - quit
+list - list Commands
+
+>>>
