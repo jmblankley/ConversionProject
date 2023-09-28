@@ -18,7 +18,6 @@ int *remainderArr = new int[currIndex];
 // Params: none
 void printBinary()
 {
-	cout << currIndex << endl;
 	cout << "Converted number: ";
 	for (int i = currIndex - 1; i >= 0; i--)
 	{
