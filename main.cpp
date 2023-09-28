@@ -4,22 +4,56 @@ Conversion Project
 Joshua Blankley, ...add names here
 
 October 2023
-Menu-driven program to convert numbers from base 10 to 2, from 2 to 10 and using the
-short cut methods between 16 and 2.
+
+Menu-driven program to convert numbers from base 10 to 2, from 2 to 10 and using the short cut methods between 16 and 2.
 *******************************************************************************/
 #include <iostream>
 using namespace std;
+
+// Globals
+int currIndex = 0;
+int *remainderArr = new int[currIndex];
+
+// Prints out the decimal to binary conversion result.
+// Params: none
+void printBinary()
+{
+	cout << currIndex << endl;
+	cout << "Converted number: ";
+	for (int i = currIndex - 1; i >= 0; i--)
+	{
+		cout << remainderArr[i];
+	}
+	cout << endl;
+}
 
 // Converts a decimal number to binary representation.
 // Params: valueToConvert The decimal value to convert to binary.
 void decimalToBinary(int valueToConvert)
 {
+	int remainderVal;
+
+	if (valueToConvert == 0)
+	{
+		printBinary();
+		currIndex = 0;
+		return;
+	}
+
+	remainderVal = valueToConvert % 2;
+	valueToConvert = valueToConvert / 2;
+
+	remainderArr[currIndex] = remainderVal;
+	currIndex++;
+
+	decimalToBinary(valueToConvert);
 }
 
 // Purpose: Converts a binary number to decimal representation.
 // Params: valueToConvert The binary value to convert to decimal.
 void binaryToDecimal(int valueToConvert)
 {
+	cout << valueToConvert << endl;
 }
 
 // Converts a hexadecimal number to binary representation.
@@ -53,38 +87,38 @@ int main(int argc, char *argv[])
 	int valueToConvert;
 
 	cout << "Please enter conversion command, followed by the value you wish to convert." << endl;
+
 	printCommands();
 
 	cout << ">>> ";
-	cin >> command;
 
-	while (command != "q")
+	while (cin >> command)
 	{
-		if (command == "list")
+		if (command == "q")
+		{
+			break;
+		}
+		else if (command == "list")
 		{
 			printCommands();
 		}
 		else if (command == "db")
 		{
-			cout << "Enter value you wish to convert: ";
 			cin >> valueToConvert;
 			decimalToBinary(valueToConvert);
 		}
 		else if (command == "bd")
 		{
-			cout << "Enter value you wish to convert: ";
 			cin >> valueToConvert;
 			binaryToDecimal(valueToConvert);
 		}
 		else if (command == "hb")
 		{
-			cout << "Enter value you wish to convert: ";
 			cin >> valueToConvert;
 			hexToBinary(valueToConvert);
 		}
 		else if (command == "bh")
 		{
-			cout << "Enter value you wish to convert: ";
 			cin >> valueToConvert;
 			binaryToHex(valueToConvert);
 		}
@@ -94,7 +128,6 @@ int main(int argc, char *argv[])
 		}
 
 		cout << ">>> ";
-		cin >> command;
 	}
 
 	return 0;
