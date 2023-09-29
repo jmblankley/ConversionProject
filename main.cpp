@@ -8,11 +8,12 @@ October 2023
 Menu-driven program to convert numbers from base 10 to 2, from 2 to 10 and using the short cut methods between 16 and 2.
 *******************************************************************************/
 #include <iostream>
+#include <vector>
 using namespace std;
 
 // Globals
 int currIndex = 0;
-int *remainderArr = new int[currIndex];
+int remainderArr[64];
 
 // Prints out the decimal to binary conversion result.
 // Params: none
@@ -50,20 +51,20 @@ void decimalToBinary(int valueToConvert)
 
 // Purpose: Converts a binary number to decimal representation.
 // Params: valueToConvert The binary value to convert to decimal.
-void binaryToDecimal(int valueToConvert)
+void binaryToDecimal(long valueToConvert)
 {
 	cout << valueToConvert << endl;
 }
 
 // Converts a hexadecimal number to binary representation.
 // Params: valueToConvert The hexadecimal value to convert to binary.
-void hexToBinary(int valueToConvert)
+void hexToBinary(long valueToConvert)
 {
 }
 
 // Purpose: Converts a binary number to hexadecimal representation.
 // Params: valueToConvert The binary value to convert to hexadecimal.
-void binaryToHex(int valueToConvert)
+void binaryToHex(long valueToConvert)
 {
 }
 
@@ -83,7 +84,7 @@ void printCommands()
 int main(int argc, char *argv[])
 {
 	string command;
-	int valueToConvert;
+	long valueToConvert;
 
 	cout << "Please enter conversion command, followed by the value you wish to convert." << endl;
 
