@@ -170,6 +170,10 @@ int main(int argc, char *argv[])
 			cin >> valueToConvert;
 			binaryToHex(valueToConvert);
 		}
+		else if (command == "clear")
+		{
+			system("clear");
+		}
 		else
 		{
 			cout << "Sorry that is not a valid command, please try again." << endl;
