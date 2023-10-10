@@ -59,8 +59,80 @@ void binaryToDecimal(long valueToConvert)
 
 // Converts a hexadecimal number to binary representation.
 // Params: valueToConvert The hexadecimal value to convert to binary.
-void hexToBinary(long valueToConvert)
+void hexadecimalToBinary(string hexatodecimal)
 {
+    long i;
+
+    if (hexatodecimal[1] == 'x' || hexatodecimal[1] == 'X'){
+        i = 2;
+    }
+    else{
+        i = 0;
+    }
+
+    for(long j = i;j<hexatodecimal.length();j++) {
+//Example 0XAC1
+        switch (hexatodecimal[j]) {
+            case '0':
+                cout << "0000";
+                break;
+            case '1':
+                cout << "0001";
+                break;
+            case '2':
+                cout << "0010";
+                break;
+            case '3':
+                cout << "0011";
+                break;
+            case '4':
+                cout << "0100";
+                break;
+            case '5':
+                cout << "0101";
+                break;
+            case '6':
+                cout << "0110";
+                break;
+            case '7':
+                cout << "0111";
+                break;
+            case '8':
+                cout << "1000";
+                break;
+            case '9':
+                cout << "1001";
+                break;
+            case 'A':
+            case 'a':
+                cout << "1010";
+                break;
+            case 'B':
+            case 'b':
+                cout << "1011";
+                break;
+            case 'C':
+            case 'c':
+                cout << "1100";
+                break;
+            case 'D':
+            case 'd':
+                cout << "1101";
+                break;
+            case 'E':
+            case 'e':
+                cout << "1110";
+                break;
+            case 'F':
+            case 'f':
+                cout << "1111";
+                break;
+            default:
+                cout << " Not an hexadecimal digit! ";
+        }
+
+    }
+    cout<<endl;
 }
 
 // Purpose: Converts a binary number to hexadecimal representation.
@@ -132,6 +204,7 @@ void printCommands()
 int main(int argc, char *argv[])
 {
 	string command;
+	string input;
 	long valueToConvert;
 
 	cout << "Please enter conversion command, followed by the value you wish to convert." << endl;
@@ -162,8 +235,8 @@ int main(int argc, char *argv[])
 		}
 		else if (command == "hb")
 		{
-			cin >> valueToConvert;
-			hexToBinary(valueToConvert);
+			cin >> input;
+            		hexadecimalToBinary(input);
 		}
 		else if (command == "bh")
 		{
