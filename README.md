@@ -13,7 +13,7 @@ Linux, Github, C++
 ## Installation
 
 In the terminal:
-1. `g++ -o conversion -Wall -ansi -pedantic -std=c++20 main.cpp`
+1. Compile the program using `g++ -o conversion -Wall -ansi -pedantic -std=c++20 main.cpp`.
 2. Execute the program using `./conversion`.
 
 ## Usage
@@ -50,6 +50,3 @@ Sorry that is not a valid command, please try again.
 >>> bh 1010010101011010110111
 Converted from Binary to Hexidecimal: 4E4B9
 >>> q
-```
-
-## Development Log
