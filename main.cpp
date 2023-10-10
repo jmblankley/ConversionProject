@@ -1,12 +1,11 @@
 /*******************************************************************************
-Conversion Project
+Conversion Program
 
-Joshua Blankley, Aaron Jacobsen, ...
+Authors: Joshua Blankley, Lance Cole, Renato da Silva Filho, Edward Duque, Aaron Jacobsen, Marcus Jones, Lia Revkova
 
 October 2023
 
 Menu-driven program to convert numbers from base 10 to 2, from 2 to 10 and using the short cut methods between 16 and 2.
-**Adding this comment for commit testing**
 *******************************************************************************/
 #include <iostream>
 #include <vector>
@@ -20,7 +19,7 @@ int remainderArr[64];
 // Params: none
 void printBinary()
 {
-	cout << "Converted number: ";
+	cout << "Converted from Decimal to Binary: ";
 	for (int i = currIndex - 1; i >= 0; i--)
 	{
 		cout << remainderArr[i];
@@ -61,84 +60,89 @@ void binaryToDecimal(long valueToConvert)
 // Params: valueToConvert The hexadecimal value to convert to binary.
 void hexadecimalToBinary(string hexatodecimal)
 {
-    long i;
+	cout << "Converted from Hexidecimal to Binary: ";
+	long i;
 
-    if (hexatodecimal[1] == 'x' || hexatodecimal[1] == 'X'){
-        i = 2;
-    }
-    else{
-        i = 0;
-    }
+	if (hexatodecimal[1] == 'x' || hexatodecimal[1] == 'X')
+	{
+		i = 2;
+	}
+	else
+	{
+		i = 0;
+	}
 
-    for(long j = i;j<hexatodecimal.length();j++) {
-//Example 0XAC1
-        switch (hexatodecimal[j]) {
-            case '0':
-                cout << "0000";
-                break;
-            case '1':
-                cout << "0001";
-                break;
-            case '2':
-                cout << "0010";
-                break;
-            case '3':
-                cout << "0011";
-                break;
-            case '4':
-                cout << "0100";
-                break;
-            case '5':
-                cout << "0101";
-                break;
-            case '6':
-                cout << "0110";
-                break;
-            case '7':
-                cout << "0111";
-                break;
-            case '8':
-                cout << "1000";
-                break;
-            case '9':
-                cout << "1001";
-                break;
-            case 'A':
-            case 'a':
-                cout << "1010";
-                break;
-            case 'B':
-            case 'b':
-                cout << "1011";
-                break;
-            case 'C':
-            case 'c':
-                cout << "1100";
-                break;
-            case 'D':
-            case 'd':
-                cout << "1101";
-                break;
-            case 'E':
-            case 'e':
-                cout << "1110";
-                break;
-            case 'F':
-            case 'f':
-                cout << "1111";
-                break;
-            default:
-                cout << " Not an hexadecimal digit! ";
-        }
-
-    }
-    cout<<endl;
+	for (long j = i; j < hexatodecimal.length(); j++)
+	{
+		// Example 0XAC1
+		switch (hexatodecimal[j])
+		{
+		case '0':
+			cout << "0000";
+			break;
+		case '1':
+			cout << "0001";
+			break;
+		case '2':
+			cout << "0010";
+			break;
+		case '3':
+			cout << "0011";
+			break;
+		case '4':
+			cout << "0100";
+			break;
+		case '5':
+			cout << "0101";
+			break;
+		case '6':
+			cout << "0110";
+			break;
+		case '7':
+			cout << "0111";
+			break;
+		case '8':
+			cout << "1000";
+			break;
+		case '9':
+			cout << "1001";
+			break;
+		case 'A':
+		case 'a':
+			cout << "1010";
+			break;
+		case 'B':
+		case 'b':
+			cout << "1011";
+			break;
+		case 'C':
+		case 'c':
+			cout << "1100";
+			break;
+		case 'D':
+		case 'd':
+			cout << "1101";
+			break;
+		case 'E':
+		case 'e':
+			cout << "1110";
+			break;
+		case 'F':
+		case 'f':
+			cout << "1111";
+			break;
+		default:
+			cout << " Not an hexadecimal digit! ";
+		}
+	}
+	cout << endl;
 }
 
 // Purpose: Converts a binary number to hexadecimal representation.
 // Params: valueToConvert The binary value to convert to hexadecimal.
 void binaryToHex(long valueToConvert)
 {
+	cout << "Converted from Binary to Hexidecimal: ";
 	// used for storing each digit from the binary number passed in by the user
 	long arrayofdigits[64];
 
@@ -192,10 +196,10 @@ void binaryToHex(long valueToConvert)
 // Params: none
 void printCommands()
 {
-	string commandList[] = {"   db - decimal(base 10) to binary", "   bd - binary to decimal(base 10)", "   hb - hexadecimal(base 16) to binary", "   bh - binary to hexadecimal(base 16)", "   q - quit", "   list - list Commands"};
+	string commandList[] = {"   db - decimal(base 10) to binary", "   bd - binary to decimal(base 10)", "   hb - hexadecimal(base 16) to binary", "   bh - binary to hexadecimal(base 16)", "   clear - clears the terminal", "   q - quit", "   list - list Commands"};
 
 	cout << "Commands:" << endl;
-	for (int i = 0; i < 6; i++)
+	for (int i = 0; i < 7; i++)
 	{
 		cout << commandList[i] << endl;
 	}
@@ -236,7 +240,7 @@ int main(int argc, char *argv[])
 		else if (command == "hb")
 		{
 			cin >> input;
-            		hexadecimalToBinary(input);
+			hexadecimalToBinary(input);
 		}
 		else if (command == "bh")
 		{
