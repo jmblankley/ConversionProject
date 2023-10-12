@@ -55,13 +55,10 @@ void decimalToBinary(int valueToConvert)
 
 // Purpose: Converts a binary number to decimal representation.
 // Params: valueToConvert The binary value to convert to decimal.
-void binaryToDecimal(long valueToConvert)
+void binaryToDecimal(long bNum)
 {
-    long bNum;
-    //cin >> bNum;
     
-    int decimalNumber = 0;
-    int i = 0;
+    int decimalNumber = 0, i = 0;
         while(bNum != 0) {
           int remainder = bNum % 10;
           bNum /= 10;
@@ -216,6 +213,7 @@ int main(int argc, char *argv[])
     string command;
     string input;
     long valueToConvert;
+    long bNum;
 
     cout << "Please enter conversion command, followed by the value you wish to convert." << endl;
 
