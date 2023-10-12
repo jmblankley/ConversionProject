@@ -67,7 +67,7 @@ void binaryToDecimal(long bNum)
         ++i;
     }
 
-    cout << "The Decimal Number is: " << decimalNumber << endl;
+    cout << "Converted from Binary to Decimal: " << decimalNumber << endl;
 }
 
 // Converts a hexadecimal number to binary representation.
@@ -237,6 +237,10 @@ int main(int argc, char *argv[])
         if (command == "q")
         {
             break;
+        }
+        else if (command == "clear")
+        {
+            system("clear");
         }
         else if (command == "list")
         {
