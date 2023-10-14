@@ -152,57 +152,101 @@ void hexadecimalToBinary(string hexatodecimal)
     cout << endl;
 }
 
+void nibbleChecker(string nibble)
+{
+    if (nibble == "0000")
+    {
+        cout << '0';
+    }
+    else if (nibble == "0001")
+    {
+        cout << '1';
+    }
+    else if (nibble == "0010")
+    {
+        cout << '2';
+    }
+    else if (nibble == "0011")
+    {
+        cout << '3';
+    }
+    else if (nibble == "0100")
+    {
+        cout << '4';
+    }
+    else if (nibble == "0101")
+    {
+        cout << '5';
+    }
+    else if (nibble == "0110")
+    {
+        cout << '6';
+    }
+    else if (nibble == "0111")
+    {
+        cout << '7';
+    }
+    else if (nibble == "1000")
+    {
+        cout << '8';
+    }
+    else if (nibble == "1001")
+    {
+        cout << '9';
+    }
+    else if (nibble == "1010")
+    {
+        cout << 'A';
+    }
+    else if (nibble == "1011")
+    {
+        cout << 'B';
+    }
+    else if (nibble == "1100")
+    {
+        cout << 'C';
+    }
+    else if (nibble == "1101")
+    {
+        cout << 'D';
+    }
+    else if (nibble == "1110")
+    {
+        cout << 'E';
+    }
+    else if (nibble == "1111")
+    {
+        cout << 'F';
+    }
+    else
+    {
+        cout << " Not a valid binary digit! ";
+    }
+}
+
 // Purpose: Converts a binary number to hexadecimal representation.
 // Params: valueToConvert The binary value to convert to hexadecimal.
 void binaryToHex(unsigned long long valueToConvert)
 {
+
     cout << "Converted from Binary to Hexidecimal: ";
-    // used for storing each digit from the binary number passed in by the user
-    long arrayofdigits[64];
+    string nibble;
 
-    // used for storing the remainder in first while loop
-    long remainder = 0;
+    // convert valueToConvert to c style string (char arr)
+    string valueString = to_string(valueToConvert);
+    const char *valueCStr = valueString.c_str();
+    string nibbleArr[valueString.length()];
 
-    // used for storing the number calculated by the four or eight binary digit number passed in by the user
-    long calculatednumber = 0;
-
-    // a and b used for iterating and functioning, and performing calculations in the while and for loops
-    long a = 1;
-
-    long b = 0;
-
-    // next three loops convert binary number to hexadecimal number
-    // loop performs the appropriate calculations for each binary digit and adds them together and stores them into the calculatednumber variable
-    // if user inputted an eight digit binary number will store both calculated numbers from the first and last four binary digits into the same calculatednumber variable
-    while (valueToConvert > 0)
+    for (int i = 0; i < valueString.length(); i++)
     {
-        remainder = valueToConvert % 2;
-        calculatednumber += remainder * a;
-        a = a * 2;
-        valueToConvert = valueToConvert / 10;
-    }
-
-    // reset a back to zero
-    a = 0;
-    // loop stores the calculated number from the first four binary digits or if user inputted eight binary digits the calculated numbers from first and last four digits seperately into array that contains the one or two number values needed for reading in the next loop to finally convert to the right hexadecimal value
-    while (calculatednumber != 0)
-    {
-        arrayofdigits[a] = calculatednumber % 16;
-        calculatednumber /= 16;
-        a++;
-    }
-    // for loop that, executes after converting binary number to hexadecimal number above, that will print hexadecimal value as correct corresponding hexadecimal number value if the converted value is less than nine and if the converted value is more than nine will print the correct corresponding hexadecimal letter or character value
-    for (b = a - 1; b >= 0; b--)
-    {
-        if (arrayofdigits[b] > 9)
+        nibble += valueCStr[i];
+        if (nibble.length() == 4)
         {
-            cout << (char)(arrayofdigits[b] + 55);
-        }
-        else
-        {
-            cout << arrayofdigits[b];
+            nibbleChecker(nibble);
+            nibble = "";
         }
     }
+
     cout << endl;
 }
 
