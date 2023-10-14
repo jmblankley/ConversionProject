@@ -55,7 +55,7 @@ void decimalToBinary(int valueToConvert)
 
 // Purpose: Converts a binary number to decimal representation.
 // Params: valueToConvert The binary value to convert to decimal.
-void binaryToDecimal(long bNum)
+void binaryToDecimal(unsigned long long bNum)
 {
 
     int decimalNumber = 0, i = 0;
@@ -86,7 +86,7 @@ void hexadecimalToBinary(string hexatodecimal)
         i = 0;
     }
 
-    for (long j = i; j < hexatodecimal.length(); j++)
+    for (long j = i; j < (long)hexatodecimal.length(); j++)
     {
         // Example 0XAC1
         switch (hexatodecimal[j])
@@ -154,7 +154,7 @@ void hexadecimalToBinary(string hexatodecimal)
 
 // Purpose: Converts a binary number to hexadecimal representation.
 // Params: valueToConvert The binary value to convert to hexadecimal.
-void binaryToHex(long valueToConvert)
+void binaryToHex(unsigned long long valueToConvert)
 {
     cout << "Converted from Binary to Hexidecimal: ";
     // used for storing each digit from the binary number passed in by the user
@@ -223,8 +223,7 @@ int main(int argc, char *argv[])
 {
     string command;
     string input;
-    long valueToConvert;
-    long bNum;
+    unsigned long long valueToConvert;
 
     cout << "Please enter conversion command, followed by the value you wish to convert." << endl;
 
