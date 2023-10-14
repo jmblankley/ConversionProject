@@ -224,27 +224,22 @@ void nibbleChecker(string nibble)
     }
 }
 
-// Purpose: Converts a binary number to hexadecimal representation.
-// Params: valueToConvert The binary value to convert to hexadecimal.
-void binaryToHex(unsigned long long valueToConvert)
+void binaryToHex(string valueToConvert)
 {
+    cout << "Converted from Binary to Hexadecimal: ";
 
-    cout << "Converted from Binary to Hexidecimal: ";
-    string nibble;
+    string extendedValue = valueToConvert;
+    int extension = 4 - (valueToConvert.length() % 4);
 
-    // convert valueToConvert to c style string (char arr)
-    string valueString = to_string(valueToConvert);
-    const char *valueCStr = valueString.c_str();
-    string nibbleArr[valueString.length()];
-
-    for (int i = 0; i < valueString.length(); i++)
+    if (extension < 4)
     {
-        nibble += valueCStr[i];
-        if (nibble.length() == 4)
-        {
-            nibbleChecker(nibble);
-            nibble = "";
-        }
+        extendedValue = string(extension, '0') + extendedValue;
+    }
+
+    for (int i = 0; i < extendedValue.length(); i += 4)
+    {
+        string nibble = extendedValue.substr(i, 4);
+        nibbleChecker(nibble);
     }
 
     cout << endl;
@@ -261,6 +256,8 @@ void printCommands()
     {
         cout << commandList[i] << endl;
     }
+
+    cout << "(Keep binary input at 20 Digits or less.)" << endl;
 }
 
 int main(int argc, char *argv[])
@@ -268,6 +265,7 @@ int main(int argc, char *argv[])
     string command;
     string input;
     unsigned long long valueToConvert;
+    string val;
 
     cout << "Please enter conversion command, followed by the value you wish to convert." << endl;
 
@@ -306,8 +304,8 @@ int main(int argc, char *argv[])
         }
         else if (command == "bh")
         {
-            cin >> valueToConvert;
-            binaryToHex(valueToConvert);
+            cin >> val;
+            binaryToHex(val);
         }
         else
         {
