@@ -59,9 +59,10 @@ void binaryToDecimal(string bNum)
 {
     int decimalNumber = 0;
 
-    for (size_t i = 0; i < bNum.length(); i++)
+    for (int i = 0; i < (int)bNum.length(); i++)
     {
         char bit = bNum[i];
+
         if (bit == '1')
         {
             decimalNumber = decimalNumber * 2 + 1;
@@ -72,7 +73,7 @@ void binaryToDecimal(string bNum)
         }
         else
         {
-            std::cerr << "Invalid binary digit: " << bit << std::endl;
+            cerr << "Invalid binary digit: " << bit << endl;
         }
     }
 
@@ -245,7 +246,7 @@ void binaryToHex(string valueToConvert)
         extendedValue = string(extension, '0') + extendedValue;
     }
 
-    for (int i = 0; i < extendedValue.length(); i += 4)
+    for (int i = 0; i < (int)extendedValue.length(); i += 4)
     {
         string nibble = extendedValue.substr(i, 4);
         nibbleChecker(nibble);
