@@ -55,16 +55,25 @@ void decimalToBinary(int valueToConvert)
 
 // Purpose: Converts a binary number to decimal representation.
 // Params: valueToConvert The binary value to convert to decimal.
-void binaryToDecimal(unsigned long long bNum)
+void binaryToDecimal(string bNum)
 {
+    int decimalNumber = 0;
 
-    int decimalNumber = 0, i = 0;
-    while (bNum != 0)
+    for (size_t i = 0; i < bNum.length(); i++)
     {
-        int remainder = bNum % 10;
-        bNum /= 10;
-        decimalNumber += remainder * pow(2, i);
-        ++i;
+        char bit = bNum[i];
+        if (bit == '1')
+        {
+            decimalNumber = decimalNumber * 2 + 1;
+        }
+        else if (bit == '0')
+        {
+            decimalNumber = decimalNumber * 2;
+        }
+        else
+        {
+            std::cerr << "Invalid binary digit: " << bit << std::endl;
+        }
     }
 
     cout << "Converted from Binary to Decimal: " << decimalNumber << endl;
@@ -294,8 +303,8 @@ int main(int argc, char *argv[])
         }
         else if (command == "bd")
         {
-            cin >> valueToConvert;
-            binaryToDecimal(valueToConvert);
+            cin >> val;
+            binaryToDecimal(val);
         }
         else if (command == "hb")
         {
