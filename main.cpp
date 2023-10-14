@@ -266,8 +266,6 @@ void printCommands()
     {
         cout << commandList[i] << endl;
     }
-
-    cout << "(Keep binary input at 20 Digits or less.)" << endl;
 }
 
 int main(int argc, char *argv[])
