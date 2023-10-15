@@ -55,16 +55,26 @@ void decimalToBinary(int valueToConvert)
 
 // Purpose: Converts a binary number to decimal representation.
 // Params: valueToConvert The binary value to convert to decimal.
-void binaryToDecimal(unsigned long long bNum)
+void binaryToDecimal(string bNum)
 {
+    int decimalNumber = 0;
 
-    int decimalNumber = 0, i = 0;
-    while (bNum != 0)
+    for (int i = 0; i < (int)bNum.length(); i++)
     {
-        int remainder = bNum % 10;
-        bNum /= 10;
-        decimalNumber += remainder * pow(2, i);
-        ++i;
+        char bit = bNum[i];
+
+        if (bit == '1')
+        {
+            decimalNumber = decimalNumber * 2 + 1;
+        }
+        else if (bit == '0')
+        {
+            decimalNumber = decimalNumber * 2;
+        }
+        else
+        {
+            cerr << "Invalid binary digit: " << bit << endl;
+        }
     }
 
     cout << "Converted from Binary to Decimal: " << decimalNumber << endl;
@@ -152,57 +162,96 @@ void hexadecimalToBinary(string hexatodecimal)
     cout << endl;
 }
 
-// Purpose: Converts a binary number to hexadecimal representation.
-// Params: valueToConvert The binary value to convert to hexadecimal.
-void binaryToHex(unsigned long long valueToConvert)
+void nibbleChecker(string nibble)
 {
-    cout << "Converted from Binary to Hexidecimal: ";
-    // used for storing each digit from the binary number passed in by the user
-    long arrayofdigits[64];
-
-    // used for storing the remainder in first while loop
-    long remainder = 0;
-
-    // used for storing the number calculated by the four or eight binary digit number passed in by the user
-    long calculatednumber = 0;
-
-    // a and b used for iterating and functioning, and performing calculations in the while and for loops
-    long a = 1;
-
-    long b = 0;
-
-    // next three loops convert binary number to hexadecimal number
-    // loop performs the appropriate calculations for each binary digit and adds them together and stores them into the calculatednumber variable
-    // if user inputted an eight digit binary number will store both calculated numbers from the first and last four binary digits into the same calculatednumber variable
-    while (valueToConvert > 0)
+    if (nibble == "0000")
     {
-        remainder = valueToConvert % 2;
-        calculatednumber += remainder * a;
-        a = a * 2;
-        valueToConvert = valueToConvert / 10;
+        cout << '0';
+    }
+    else if (nibble == "0001")
+    {
+        cout << '1';
+    }
+    else if (nibble == "0010")
+    {
+        cout << '2';
+    }
+    else if (nibble == "0011")
+    {
+        cout << '3';
+    }
+    else if (nibble == "0100")
+    {
+        cout << '4';
+    }
+    else if (nibble == "0101")
+    {
+        cout << '5';
+    }
+    else if (nibble == "0110")
+    {
+        cout << '6';
+    }
+    else if (nibble == "0111")
+    {
+        cout << '7';
+    }
+    else if (nibble == "1000")
+    {
+        cout << '8';
+    }
+    else if (nibble == "1001")
+    {
+        cout << '9';
+    }
+    else if (nibble == "1010")
+    {
+        cout << 'A';
+    }
+    else if (nibble == "1011")
+    {
+        cout << 'B';
+    }
+    else if (nibble == "1100")
+    {
+        cout << 'C';
+    }
+    else if (nibble == "1101")
+    {
+        cout << 'D';
+    }
+    else if (nibble == "1110")
+    {
+        cout << 'E';
+    }
+    else if (nibble == "1111")
+    {
+        cout << 'F';
+    }
+    else
+    {
+        cout << " Not a valid binary digit! ";
+    }
+}
+
+void binaryToHex(string valueToConvert)
+{
+    cout << "Converted from Binary to Hexadecimal: ";
+
+    string extendedValue = valueToConvert;
+    int extension = 4 - (valueToConvert.length() % 4);
+
+    if (extension < 4)
+    {
+        extendedValue = string(extension, '0') + extendedValue;
     }
 
-    // reset a back to zero
-    a = 0;
-    // loop stores the calculated number from the first four binary digits or if user inputted eight binary digits the calculated numbers from first and last four digits seperately into array that contains the one or two number values needed for reading in the next loop to finally convert to the right hexadecimal value
-    while (calculatednumber != 0)
+    for (int i = 0; i < (int)extendedValue.length(); i += 4)
     {
-        arrayofdigits[a] = calculatednumber % 16;
-        calculatednumber /= 16;
-        a++;
+        string nibble = extendedValue.substr(i, 4);
+        nibbleChecker(nibble);
     }
-    // for loop that, executes after converting binary number to hexadecimal number above, that will print hexadecimal value as correct corresponding hexadecimal number value if the converted value is less than nine and if the converted value is more than nine will print the correct corresponding hexadecimal letter or character value
-    for (b = a - 1; b >= 0; b--)
-    {
-        if (arrayofdigits[b] > 9)
-        {
-            cout << (char)(arrayofdigits[b] + 55);
-        }
-        else
-        {
-            cout << arrayofdigits[b];
-        }
-    }
+
     cout << endl;
 }
 
@@ -224,6 +273,7 @@ int main(int argc, char *argv[])
     string command;
     string input;
     unsigned long long valueToConvert;
+    string val;
 
     cout << "Please enter conversion command, followed by the value you wish to convert." << endl;
 
@@ -252,8 +302,8 @@ int main(int argc, char *argv[])
         }
         else if (command == "bd")
         {
-            cin >> valueToConvert;
-            binaryToDecimal(valueToConvert);
+            cin >> val;
+            binaryToDecimal(val);
         }
         else if (command == "hb")
         {
@@ -262,8 +312,8 @@ int main(int argc, char *argv[])
         }
         else if (command == "bh")
         {
-            cin >> valueToConvert;
-            binaryToHex(valueToConvert);
+            cin >> val;
+            binaryToHex(val);
         }
         else
         {
